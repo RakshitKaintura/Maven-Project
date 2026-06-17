@@ -2,13 +2,13 @@ trigger:
 - main
 
 pool:
-  name: Maven Pool
+  name: Agent_Pool
 
 steps:
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
-    goals: 'package'
+    goals: 'clean package'
 
 - script: |
     echo "Simulating deployment..."
@@ -18,6 +18,6 @@ steps:
   displayName: 'Simulate Deployment'
 
 - script: |
-    echo "Contents of deployed folder:"
+    echo "Running the JAR file..."
     dir deployed
-  displayName: 'Verify Deployment Output'
+  displayName: 'Verify Deployment'
